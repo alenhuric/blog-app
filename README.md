@@ -20,8 +20,3 @@ A simple blog application built with Laravel and Tailwind CSS. This app allows u
 -   Frontend: Tailwind CSS - Utility-first CSS framework for styling
 -   JavaScript: Vanilla JavaScript for dynamic functionality
 -   Database: MySQL - Relational database for storing posts and other data.
-
-## Usage
-
--   Send a GET request to the following endpoint to retrieve recent tweets:
-    GET http://127.0.0.1:8000/api/tweets
