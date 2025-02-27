@@ -7,25 +7,44 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-    <nav class="bg-white dark:bg-gray-800 shadow-md py-4">
-        <div class="container mx-auto px-6 flex items-center justify-between">
-            <a href="{{ route('posts.index') }}" class="text-2xl font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition">
-                Alen's Blog
-            </a>
+<nav class="bg-white dark:bg-gray-800 shadow-md py-4">
+    <div class="container mx-auto px-6 flex items-center justify-between">
+        <a href="{{ route('posts.index') }}" class="text-2xl font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition">
+            Alen's Blog
+        </a>
 
-            <div class="flex items-center gap-4">
-                @unless (Route::is('posts.create'))
-                    <a href="{{ route('posts.create') }}" class="bg-blue-600 dark:bg-blue-500 text-white px-5 py-2 rounded-lg transition font-semibold hover:bg-blue-700 dark:hover:bg-blue-600">
-                        Make A Blog Post
-                    </a>
-                @endunless
+        <div class="flex items-center gap-4">
+            @auth
+                <!-- Display "Hello, [Name]" and a sign-out button -->
+                <span class="text-gray-700 dark:text-gray-300">Hello, {{ Auth::user()->name }}</span>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="bg-red-600 dark:bg-red-500 text-white px-5 py-2 rounded-lg transition font-semibold hover:bg-red-700 dark:hover:bg-red-600">
+                        Sign Out
+                    </button>
+                </form>
+            @else
+                <!-- Display sign-in and sign-up buttons -->
+                <a href="{{ route('login') }}" class="bg-blue-600 dark:bg-blue-500 text-white px-5 py-2 rounded-lg transition font-semibold hover:bg-blue-700 dark:hover:bg-blue-600">
+                    Sign In
+                </a>
+                <a href="{{ route('register') }}" class="bg-green-600 dark:bg-green-500 text-white px-5 py-2 rounded-lg transition font-semibold hover:bg-green-700 dark:hover:bg-green-600">
+                    Sign Up
+                </a>
+            @endauth
 
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-                    <span id="theme-icon" class="text-gray-700 dark:text-gray-300">🌙</span>
-                </button>
-            </div>
+            @unless (Route::is('posts.create'))
+                <a href="{{ route('posts.create') }}" class="bg-blue-600 dark:bg-blue-500 text-white px-5 py-2 rounded-lg transition font-semibold hover:bg-blue-700 dark:hover:bg-blue-600">
+                    Make A Blog Post
+                </a>
+            @endunless
+
+            <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                <span id="theme-icon" class="text-gray-700 dark:text-gray-300">🌙</span>
+            </button>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <div class="container mx-auto p-6">
         @yield('content')

@@ -2,7 +2,7 @@
 
 ## Blog App
 
-A simple blog application built with Laravel and Tailwind CSS. This app allows users to create, read, update, and delete blog posts.
+This app is built with Laravel and Laravel’s ORM Eloquent. The database is comprised of a MySQL database hosted on Hostinger. As for the view, it is rendered with the Blade templating engine using Tailwind CSS classes.
 
 ## Features
 
